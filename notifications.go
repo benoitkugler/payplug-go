@@ -25,7 +25,7 @@ func (s Session) handleNotification(body io.Reader, n notificationTarget) error 
 	}
 
 	if err = json.Unmarshal(content, n); err != nil {
-		return UnexpectedAPIResponseErr(err)
+		return unexpectedAPIResponseErr(err)
 	}
 
 	_, err = s.Request(http.MethodGet, n.urlForConsistent(), nil, n) // fetch the true data

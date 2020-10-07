@@ -1,3 +1,4 @@
+// This package is a library to ease the use of the Payplug payment services.
 package payplug
 
 import (
@@ -14,6 +15,8 @@ import (
 
 const version = "1.0.0"
 
+// Session enables to create requests
+// to Payplug server.
 type Session struct {
 	secretKey  string
 	apiVersion string
@@ -88,7 +91,7 @@ func (s Session) Request(method, url string, body interface{}, out interface{}) 
 	}
 
 	if err := json.Unmarshal(content, out); err != nil {
-		return resp.StatusCode, UnexpectedAPIResponseErr(err)
+		return resp.StatusCode, unexpectedAPIResponseErr(err)
 	}
 	return resp.StatusCode, nil
 }

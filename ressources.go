@@ -167,13 +167,16 @@ func (ot *OptionnalFailure) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type Metadata map[string]interface{} // Custom metadata
+// Metadata are custom key/value pairs added by the user when creating
+// objects.
+type Metadata map[string]interface{}
 
 type OneyPaiement struct {
 	Type      string `json:"type,omitempty"`       // the type of payment made, either oney_x3_with_fees or oney_x4_with_fees.
 	IsPending bool   `json:"is_pending,omitempty"` // whether the payment is in a pending state for Oney. If this is true, it means that the payer has successfully filled out Oney’s payment form, but Oney is still analyzing the payer’s file. In this case, the payment is neither authorized nor paid yet, but in a pending state. If a notification_url is set, then the payment resource will be posted to it once Oney has made its decision. See Interpreting an Oney payment status.
 }
 
+// Payment is the Payplug payment object.
 type Payment struct {
 	Id                string                 `json:"id,omitempty"`                  // Payment ID.
 	Object            string                 `json:"object,omitempty"`              // Value is: payment.

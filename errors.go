@@ -53,8 +53,8 @@ func mapHttpStatusToString(code int) string {
 	return "unhandled HTTP error"
 }
 
-// Raised when we expected the API to have a specific format, and we got something else.
-func UnexpectedAPIResponseErr(err error) error {
+// raised when we expected the API to have a specific format, and we got something else.
+func unexpectedAPIResponseErr(err error) error {
 	if err == nil {
 		return nil
 	}
