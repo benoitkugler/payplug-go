@@ -30,3 +30,11 @@ func TestWBadAuth(t *testing.T) {
 		t.Fatalf("wrong error, expected HttpError, got %T (%v)", err, err)
 	}
 }
+
+type payList struct {
+	Object  string    `json:"object,omitempty"`
+	Page    int       `json:"page,omitempty"`
+	PerPage int       `json:"per_page,omitempty"`
+	HasMore bool      `json:"has_more,omitempty"`
+	Data    []Payment `json:"data,omitempty"`
+}

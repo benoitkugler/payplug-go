@@ -13,7 +13,7 @@ import (
 	"runtime"
 )
 
-const version = "1.0.0"
+const clientVersion = "1.0.0"
 
 // Session enables to create requests
 // to Payplug server.
@@ -24,8 +24,9 @@ type Session struct {
 	client *http.Client
 }
 
-func NewSession(token string) Session {
-	return Session{secretKey: token, client: http.DefaultClient}
+// NewSession returns a controller, using the API secret key.
+func NewSession(secretKey string) Session {
+	return Session{secretKey: secretKey, client: http.DefaultClient}
 }
 
 // NewSessionCert use `cert` content as a CA bundle
@@ -63,7 +64,7 @@ func (s Session) Request(method, url string, body interface{}, out interface{}) 
 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
-	userAgent := fmt.Sprintf("Payplug-Go/%s (Go/%s)", version, runtime.Version())
+	userAgent := fmt.Sprintf("Payplug-Go/%s (Go/%s)", clientVersion, runtime.Version())
 	req.Header.Set("User-Agent", userAgent)
 
 	if s.secretKey == "" {

@@ -6,11 +6,8 @@ import (
 )
 
 var (
-	// Configuration failure.
-	ConfigurationError = errors.New("configuration error")
-
 	// Trying to process a request despite the fact that the secret key was not set.
-	// If this is raised, you should define a configuration first with SetSecretKey
+	// If this is raised, you should create a session with `NewSession`
 	SecretKeyNotSet = errors.New("payplug secret key is missing")
 )
 
@@ -24,6 +21,7 @@ func (c ClientError) Error() string {
 	return fmt.Sprintf("error during request: %s", c.err)
 }
 
+// HttpError indicates that the server responded with an error code.
 type HttpError struct {
 	code int
 	err  string
