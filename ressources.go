@@ -111,11 +111,10 @@ type Shipping struct {
 }
 
 type HostedPayment struct {
-	PaymentUrl string    `json:"payment_url,omitempty"` // The payment URL you should redirect your customer to.
-	ReturnUrl  string    `json:"return_url,omitempty"`  // The URL the customer will be redirected to after the payment page whether it succeeds or not.
-	CancelUrl  string    `json:"cancel_url,omitempty"`  // The URL the customer will redirected to after a click on ‘Cancel Payment’.
-	PaidAt     Timestamp `json:"paid_at,omitempty"`     // Date at which the payment goes through. null if the payment has yet to be paid or has failed. DEPRECATED
-	SentBy     string    `json:"sent_by,omitempty"`     // By what means the payment URL was sent to the customer, if any.
+	PaymentUrl string `json:"payment_url,omitempty"` // The payment URL you should redirect your customer to.
+	ReturnUrl  string `json:"return_url,omitempty"`  // The URL the customer will be redirected to after the payment page whether it succeeds or not.
+	CancelUrl  string `json:"cancel_url,omitempty"`  // The URL the customer will redirected to after a click on ‘Cancel Payment’.
+	SentBy     string `json:"sent_by,omitempty"`     // By what means the payment URL was sent to the customer, if any.
 }
 
 type NotificationState struct {
@@ -203,11 +202,13 @@ type Payment struct {
 	Billing           Billing                `json:"billing,omitempty"`             // Information about billing.
 	Shipping          Shipping               `json:"shipping,omitempty"`            // Information about shipping.
 	HostedPayment     HostedPayment          `json:"hosted_payment,omitempty"`      // Information about the payment.
-	Notification      NotificationState      `json:"notification,omitempty"`        // Data related to notifications.
 	Failure           OptionnalFailure       `json:"failure,omitempty"`             // Information for unsuccessful payments.
 	Description       string                 `json:"description,omitempty"`         // OPTIONAL Description shown to the customer.
 	Metadata          Metadata               `json:"metadata,omitempty"`            // Custom metadata object added when creating the payment.
 	PaymentMethod     OneyPaiement           `json:"payment_method,omitempty"`      // Data about the payment method, only available for Oney payments.
+	NotificationUrl   string                 `json:"notification_url,omitempty"`    // The URL PayPlug will send notifications to.
+
+	Notification NotificationState `json:"notification,omitempty"` // Data related to notifications
 }
 
 type Refund struct {
