@@ -8,6 +8,10 @@ type Timestamp uint // unix timestamp, zero corresponds to null value
 
 type Currency string // three-letter ISO 4217
 
+const (
+	Eur Currency = "EUR"
+)
+
 type Brand string
 
 const (
